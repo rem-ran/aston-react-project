@@ -9,7 +9,7 @@ import './Header.css';
 import Navigation from '../Navigation/Navigation';
 
 // компонет хедера ////////////////////////////////////////////////////
-const Header = ({ links }) => {
+const Header = () => {
   // начало JSX ////////////////////////////////////////////////////////////
   return (
     // coloredHeaderStyle меняет цвет хедера в зависимости где он вызван
