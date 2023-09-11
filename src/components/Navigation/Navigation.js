@@ -12,7 +12,7 @@ const Navigation = ({ isLoggedIn }) => {
   return (
     <div className="nav__link-container nav__link-container_type_hidden">
       {isLoggedIn ? (
-        // позываем линики, если пользователь авторизован
+        // показываем линики, если пользователь авторизован
         moviesHeaderLinks.map((link, index) => (
           <NavLink key={index} to={link.route} className="nav__link">
             {link.text}

@@ -6,12 +6,16 @@ import MovieCardList from '../MovieCardList/MovieCardList';
 
 // импорт стилей
 import './Main.css';
+import { useEffect } from 'react';
 
 // компонент главной страницы с фильмами ////////////////////////////////////
-const Main = ({ isLoggenIn }) => {
+const Main = ({ isLoggedIn }) => {
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, []);
   return (
     <div className="movies">
-      <Header isLoggenIn={isLoggenIn}></Header>
+      <Header isLoggedIn={isLoggedIn}></Header>
       <main className="saved-movies__content">
         <SearchForm></SearchForm>
         <MovieCardList></MovieCardList>

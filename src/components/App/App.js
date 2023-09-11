@@ -18,7 +18,7 @@ import SearchPage from '../SearchPage/SearchPage';
 
 function App() {
   // переменная состояния авторизации пользователя
-  const [isLoggenIn, setIsLoggenIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <div className="page">
@@ -27,21 +27,21 @@ function App() {
         <Route
           path="/"
           exact
-          element={<Main isLoggenIn={isLoggenIn}></Main>}
+          element={<Main isLoggedIn={isLoggedIn}></Main>}
         ></Route>
 
         {/* рут со страницей с поиском фильмов /////////////////////////////////*/}
         <Route
           path="/search"
           exact
-          element={<SearchPage isLoggenIn={isLoggenIn}></SearchPage>}
+          element={<SearchPage isLoggedIn={isLoggedIn}></SearchPage>}
         ></Route>
 
         {/* рут авторизации //////////////////////////////,////////////////////*/}
         <Route
           path="/signin"
           element={
-            <ProtectedRouteLogged isLoggenIn={isLoggenIn}>
+            <ProtectedRouteLogged isLoggedIn={isLoggedIn}>
               <Login></Login>
             </ProtectedRouteLogged>
           }
@@ -51,7 +51,7 @@ function App() {
         <Route
           path="/signup"
           element={
-            <ProtectedRouteLogged isLoggenIn={isLoggenIn}>
+            <ProtectedRouteLogged isLoggedIn={isLoggedIn}>
               <Register></Register>
             </ProtectedRouteLogged>
           }
@@ -61,7 +61,7 @@ function App() {
         <Route
           path="/favorites"
           element={
-            <ProtectedRouteNotLogged isLoggenIn={isLoggenIn}>
+            <ProtectedRouteNotLogged isLoggedIn={isLoggedIn}>
               <Favorites></Favorites>
             </ProtectedRouteNotLogged>
           }
@@ -71,7 +71,7 @@ function App() {
         <Route
           path="/history"
           element={
-            <ProtectedRouteNotLogged isLoggenIn={isLoggenIn}>
+            <ProtectedRouteNotLogged isLoggedIn={isLoggedIn}>
               <History></History>
             </ProtectedRouteNotLogged>
           }
