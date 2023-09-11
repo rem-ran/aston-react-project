@@ -10,12 +10,13 @@ import './SearchPage.css';
 // компонент страницы с поиском фильмов ////////////////////////////////////
 const SearchPage = () => {
   return (
-    <div className="search-form">
+    <div className="search-page">
       <Header></Header>
-      <main className="search-form__content">
+      <main className="search-page__content">
         <SearchForm></SearchForm>
         <MovieCardList></MovieCardList>
       </main>
+      SearchPage
       <Footer></Footer>
     </div>
   );

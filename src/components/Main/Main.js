@@ -16,6 +16,7 @@ const Main = () => {
         <SearchForm></SearchForm>
         <MovieCardList></MovieCardList>
       </main>
+      Main
       <Footer></Footer>
     </div>
   );

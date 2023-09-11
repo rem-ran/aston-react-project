@@ -14,6 +14,7 @@ import ProtectedRouteNotLogged from '../ProtectedRouteNotLogged/ProtectedRouteNo
 
 // импорт стилей
 import './App.css';
+import SearchPage from '../SearchPage/SearchPage';
 
 function App() {
   // переменная состояния авторизации пользователя
@@ -26,7 +27,7 @@ function App() {
         <Route path="/" exact element={<Main></Main>}></Route>
 
         {/* рут со страницей с поиском фильмов /////////////////////////////////*/}
-        <Route path="/search" exact element={<Main></Main>}></Route>
+        <Route path="/search" exact element={<SearchPage></SearchPage>}></Route>
 
         {/* рут авторизации //////////////////////////////,////////////////////*/}
         <Route
