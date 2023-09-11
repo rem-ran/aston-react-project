@@ -24,10 +24,18 @@ function App() {
     <div className="page">
       <Routes>
         {/* рут с главной страницей с фильмами /////////////////////////////////*/}
-        <Route path="/" exact element={<Main></Main>}></Route>
+        <Route
+          path="/"
+          exact
+          element={<Main isLoggenIn={isLoggenIn}></Main>}
+        ></Route>
 
         {/* рут со страницей с поиском фильмов /////////////////////////////////*/}
-        <Route path="/search" exact element={<SearchPage></SearchPage>}></Route>
+        <Route
+          path="/search"
+          exact
+          element={<SearchPage isLoggenIn={isLoggenIn}></SearchPage>}
+        ></Route>
 
         {/* рут авторизации //////////////////////////////,////////////////////*/}
         <Route

@@ -8,10 +8,10 @@ import MovieCardList from '../MovieCardList/MovieCardList';
 import './Main.css';
 
 // компонент главной страницы с фильмами ////////////////////////////////////
-const Main = () => {
+const Main = ({ isLoggenIn }) => {
   return (
     <div className="movies">
-      <Header></Header>
+      <Header isLoggenIn={isLoggenIn}></Header>
       <main className="saved-movies__content">
         <SearchForm></SearchForm>
         <MovieCardList></MovieCardList>

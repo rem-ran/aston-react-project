@@ -9,7 +9,7 @@ import './Header.css';
 import Navigation from '../Navigation/Navigation';
 
 // компонет хедера ////////////////////////////////////////////////////
-const Header = () => {
+const Header = ({ isLoggenIn }) => {
   // начало JSX ////////////////////////////////////////////////////////////
   return (
     // coloredHeaderStyle меняет цвет хедера в зависимости где он вызван
@@ -25,7 +25,7 @@ const Header = () => {
         </Link>
 
         {/* компонент списка линков на другие страницы */}
-        <Navigation></Navigation>
+        <Navigation isLoggenIn={isLoggenIn}></Navigation>
       </div>
     </header>
   );

@@ -2,20 +2,28 @@
 import { NavLink } from 'react-router-dom';
 
 // импорт констант
-import { moviesHeaderLinks } from '../../utils/constants';
+import { moviesHeaderLinks, moviesHeaderLink } from '../../utils/constants';
 
 // импорт стилей
 import './Navigation.css';
 
 // компонент навигации на страницах с фильмами /////////////////////////
-const Navigation = () => {
+const Navigation = ({ isLoggedIn }) => {
   return (
     <div className="nav__link-container nav__link-container_type_hidden">
-      {moviesHeaderLinks.map((link, index) => (
-        <NavLink key={index} to={link.route} className="nav__link">
-          {link.text}
+      {isLoggedIn ? (
+        // позываем линики, если пользователь авторизован
+        moviesHeaderLinks.map((link, index) => (
+          <NavLink key={index} to={link.route} className="nav__link">
+            {link.text}
+          </NavLink>
+        ))
+      ) : (
+        // если не авторизован, только линк на авторизацию
+        <NavLink to={moviesHeaderLink.route} className="nav__link">
+          {moviesHeaderLink.text}
         </NavLink>
-      ))}
+      )}
     </div>
   );
 };
