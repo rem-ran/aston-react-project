@@ -1,6 +1,6 @@
 // импорты
 import { useState } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 // импорт компонент
 import Main from '../Main/Main';
