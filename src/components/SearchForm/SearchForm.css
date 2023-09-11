@@ -3,22 +3,21 @@
     margin: 0 auto;
     align-items: center;
     justify-content: center;
-    margin-right: 70px;
-    margin-left: 70px;
     padding-bottom: 50px;
+    background-color: rgb(238, 238, 238);
 }
 
 @media screen and (max-width: 1279px) {
     .search {
-        margin-right: 30px;
-        margin-left: 30px;
+        padding-right: 30px;
+        padding-left: 30px;
     }
 }
 
 @media screen and (max-width: 767px) {
     .search {
-        margin-right: 10px;
-        margin-left: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
     }
 }
 
@@ -107,7 +106,7 @@
     right: 7px;
     transition: linear 0.3s;
     color: rgba(255, 255, 255);
-    background-color: rgba(52, 86, 243);
+    background-color: rgb(43, 43, 43);
 }
 
 .search__btn:hover {

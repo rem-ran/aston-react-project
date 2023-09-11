@@ -62,7 +62,7 @@ function App() {
           path="/favorites"
           element={
             <ProtectedRouteNotLogged isLoggedIn={isLoggedIn}>
-              <Favorites></Favorites>
+              <Favorites isLoggedIn={isLoggedIn}></Favorites>
             </ProtectedRouteNotLogged>
           }
         ></Route>
@@ -72,7 +72,7 @@ function App() {
           path="/history"
           element={
             <ProtectedRouteNotLogged isLoggedIn={isLoggedIn}>
-              <History></History>
+              <History isLoggedIn={isLoggedIn}></History>
             </ProtectedRouteNotLogged>
           }
         ></Route>

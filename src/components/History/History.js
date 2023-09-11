@@ -6,10 +6,10 @@ import Header from '../Header/Header';
 import './History.css';
 
 // компонент страницы с историей поисков ////////////////////////////////////
-const History = () => {
+const History = ({ isLoggedIn }) => {
   return (
     <div className="history">
-      <Header></Header>
+      <Header isLoggedIn={isLoggedIn}></Header>
       <main className="history__content">History</main>
       <Footer></Footer>
     </div>
