@@ -18,7 +18,7 @@ import SearchPage from '../SearchPage/SearchPage';
 
 function App() {
   // переменная состояния авторизации пользователя
-  const [isLoggenIn, setIsLoggenIn] = useState(true);
+  const [isLoggenIn, setIsLoggenIn] = useState(false);
 
   return (
     <div className="page">
