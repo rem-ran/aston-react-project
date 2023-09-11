@@ -1,4 +1,5 @@
 // импорты
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 // импорт констант
@@ -8,7 +9,8 @@ import { moviesHeaderLinks, moviesHeaderLink } from '../../utils/constants';
 import './Navigation.css';
 
 // компонент навигации на страницах с фильмами /////////////////////////
-const Navigation = ({ isLoggedIn }) => {
+const Navigation = () => {
+  const isLoggedIn = useSelector(({ userReducer }) => userReducer.isLoggedIn);
   return (
     <div className="nav__link-container nav__link-container_type_hidden">
       {isLoggedIn ? (

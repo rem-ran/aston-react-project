@@ -22,6 +22,7 @@ const SearchForm = () => {
     e.preventDefault();
 
     console.log(searchInputValue);
+
     // переводим на стртаницу поиска, если поиск произошёл на главной странице
     if (pathname === '/') {
       navigate('/search');

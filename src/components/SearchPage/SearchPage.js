@@ -8,10 +8,10 @@ import SearchForm from '../SearchForm/SearchForm';
 import './SearchPage.css';
 
 // компонент страницы с поиском фильмов ////////////////////////////////////
-const SearchPage = ({ isLoggedIn }) => {
+const SearchPage = () => {
   return (
     <div className="search-page">
-      <Header isLoggedIn={isLoggedIn}></Header>
+      <Header></Header>
       <main className="search-page__content">
         <SearchForm></SearchForm>
         <MovieCardList></MovieCardList>

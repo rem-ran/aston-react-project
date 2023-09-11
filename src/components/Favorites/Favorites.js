@@ -6,10 +6,10 @@ import Header from '../Header/Header';
 import './Favorites.css';
 
 // компонент страницы с избранными фильмами ////////////////////////////////////
-const Favorites = ({ isLoggedIn }) => {
+const Favorites = () => {
   return (
     <div className="favorites">
-      <Header isLoggedIn={isLoggedIn}></Header>
+      <Header></Header>
       <main className="favorites__content">Favorites</main>
       <Footer></Footer>
     </div>

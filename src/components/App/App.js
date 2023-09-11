@@ -1,5 +1,4 @@
 // импорты
-import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 // импорт компонент
@@ -17,31 +16,20 @@ import './App.css';
 import SearchPage from '../SearchPage/SearchPage';
 
 function App() {
-  // переменная состояния авторизации пользователя
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-
   return (
     <div className="page">
       <Routes>
         {/* рут с главной страницей с фильмами /////////////////////////////////*/}
-        <Route
-          path="/"
-          exact
-          element={<Main isLoggedIn={isLoggedIn}></Main>}
-        ></Route>
+        <Route path="/" exact element={<Main></Main>}></Route>
 
         {/* рут со страницей с поиском фильмов /////////////////////////////////*/}
-        <Route
-          path="/search"
-          exact
-          element={<SearchPage isLoggedIn={isLoggedIn}></SearchPage>}
-        ></Route>
+        <Route path="/search" exact element={<SearchPage></SearchPage>}></Route>
 
         {/* рут авторизации //////////////////////////////,////////////////////*/}
         <Route
           path="/signin"
           element={
-            <ProtectedRouteLogged isLoggedIn={isLoggedIn}>
+            <ProtectedRouteLogged>
               <Login></Login>
             </ProtectedRouteLogged>
           }
@@ -51,7 +39,7 @@ function App() {
         <Route
           path="/signup"
           element={
-            <ProtectedRouteLogged isLoggedIn={isLoggedIn}>
+            <ProtectedRouteLogged>
               <Register></Register>
             </ProtectedRouteLogged>
           }
@@ -61,8 +49,8 @@ function App() {
         <Route
           path="/favorites"
           element={
-            <ProtectedRouteNotLogged isLoggedIn={isLoggedIn}>
-              <Favorites isLoggedIn={isLoggedIn}></Favorites>
+            <ProtectedRouteNotLogged>
+              <Favorites></Favorites>
             </ProtectedRouteNotLogged>
           }
         ></Route>
@@ -71,8 +59,8 @@ function App() {
         <Route
           path="/history"
           element={
-            <ProtectedRouteNotLogged isLoggedIn={isLoggedIn}>
-              <History isLoggedIn={isLoggedIn}></History>
+            <ProtectedRouteNotLogged>
+              <History></History>
             </ProtectedRouteNotLogged>
           }
         ></Route>

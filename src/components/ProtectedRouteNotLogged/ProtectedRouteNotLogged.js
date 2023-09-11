@@ -1,6 +1,11 @@
+// импорты
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-function ProtectedRouteNotLogged({ children, isLoggedIn }) {
+// компонент навигации неавторизированного защищённого роута
+function ProtectedRouteNotLogged({ children }) {
+  const isLoggedIn = useSelector(({ userReducer }) => userReducer.isLoggedIn);
+
   return isLoggedIn ? children : <Navigate to="/" replace />;
 }
 
