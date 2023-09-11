@@ -1,11 +1,16 @@
 // список необходимых ссылок (авторизованных) для хедера на страницах с фильмами
-export const moviesHeaderLinks = [
+export const headerLinks = [
   { route: '/favorites', text: 'Избранные фильмы' },
   { route: '/history', text: 'История' },
 ];
 
+export const headerSignoutLink = {
+  route: '/',
+  text: 'Выйти',
+};
+
 // необходимая ссылка для хедера на страницах с фильмами, если не авторизован
-export const moviesHeaderLink = { route: '/signin', text: 'Авторизоваться' };
+export const headerLink = { route: '/signin', text: 'Авторизоваться' };
 
 // текст футера
 export const footerText = {
