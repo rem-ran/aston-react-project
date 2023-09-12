@@ -15,7 +15,7 @@ import { toggleIsLoggedIn } from '../../store/userSlicer';
 
 // компонент навигации на страницах с фильмами /////////////////////////
 const Navigation = () => {
-  const isLoggedIn = useSelector(({ userReducer }) => userReducer.isLoggedIn);
+  const isLoggedIn = useSelector(({ user }) => user.isLoggedIn);
   const dispatch = useDispatch();
 
   return (

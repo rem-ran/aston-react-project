@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 
 // компонент навигации авторизированного защищённого роута
 function ProtectedRoute({ children }) {
-  const isLoggedIn = useSelector(({ userReducer }) => userReducer.isLoggedIn);
+  const isLoggedIn = useSelector(({ user }) => user.isLoggedIn);
 
   return !isLoggedIn ? (
     isLoggedIn ? (
