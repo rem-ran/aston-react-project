@@ -38,7 +38,7 @@ export const inputLabelTxt = {
 
 // текст полей страницы авторизации
 export const loginTxt = {
-  heading: 'Рады видеть!',
+  heading: 'Есть аккаунт? Вперёд!',
   btnTxt: 'Войти',
   linkTxt: 'Регистрация',
   linkRoute: '/signup',
@@ -47,7 +47,7 @@ export const loginTxt = {
 
 // текст полей страницы регистрации
 export const registerTxt = {
-  heading: 'Добро пожаловать!',
+  heading: 'Тут можно зарегистрироваться!',
   btnTxt: 'Зарегистрироваться',
   linkTxt: 'Войти',
   linkRoute: '/signin',
