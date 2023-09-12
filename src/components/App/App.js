@@ -1,29 +1,38 @@
 // импорты
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 // импорт компонент
 import Main from '../Main/Main';
 import Login from '../Login/Login';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 import History from '../History/History';
 import Register from '../Register/Register';
 import Favorites from '../Favorites/Favorites';
+import SearchPage from '../SearchPage/SearchPage';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 // импорт стилей
 import './App.css';
-import SearchPage from '../SearchPage/SearchPage';
 
 function App() {
+  const location = useLocation();
+
+  // список роутов, в которых нужен хедер и футер
+  const headerFooterVisibleRoutes = ['/', '/search', '/history', '/favorites'];
+
+  // переменная, по которой будем определять через location нужен ли нам хедер и футер
+  const isHeaderFooterVisible = headerFooterVisibleRoutes.includes(
+    location.pathname
+  );
+
   return (
     <div className="page">
+      {/* рендерим хедер только в нужных роутах */}
+      {isHeaderFooterVisible && <Header />}
+
       <Routes>
-        {/* рут с главной страницей с фильмами /////////////////////////////////*/}
-        <Route path="/" exact element={<Main></Main>}></Route>
-
-        {/* рут со страницей с поиском фильмов /////////////////////////////////*/}
-        <Route path="/search" exact element={<SearchPage></SearchPage>}></Route>
-
         {/* рут авторизации //////////////////////////////,////////////////////*/}
         <Route
           path="/signin"
@@ -43,6 +52,12 @@ function App() {
             </ProtectedRoute>
           }
         ></Route>
+
+        {/* рут с главной страницей с фильмами /////////////////////////////////*/}
+        <Route path="/" exact element={<Main></Main>}></Route>
+
+        {/* рут со страницей с поиском фильмов /////////////////////////////////*/}
+        <Route path="/search" exact element={<SearchPage></SearchPage>}></Route>
 
         {/* рут страницы с избранными фильмами/////////////////////////////////*/}
         <Route
@@ -67,6 +82,9 @@ function App() {
         {/* рут несуществующей страницы /////////////////////////////////////*/}
         <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
       </Routes>
+
+      {/* рендерим футер только в нужных роутах */}
+      {isHeaderFooterVisible && <Footer />}
     </div>
   );
 }

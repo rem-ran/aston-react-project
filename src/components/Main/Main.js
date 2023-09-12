@@ -1,6 +1,4 @@
 // импорт компонент
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import SearchForm from '../SearchForm/SearchForm';
 import MovieCardList from '../MovieCardList/MovieCardList';
 
@@ -11,12 +9,10 @@ import './Main.css';
 const Main = () => {
   return (
     <div className="movies">
-      <Header></Header>
       <main className="saved-movies__content">
         <SearchForm></SearchForm>
         <MovieCardList></MovieCardList>
       </main>
-      <Footer></Footer>
     </div>
   );
 };

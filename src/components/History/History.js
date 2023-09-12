@@ -1,7 +1,3 @@
-// импорт компонент
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-
 // импорт стилей
 import './History.css';
 
@@ -9,9 +5,7 @@ import './History.css';
 const History = () => {
   return (
     <div className="history">
-      <Header></Header>
       <main className="history__content">History</main>
-      <Footer></Footer>
     </div>
   );
 };

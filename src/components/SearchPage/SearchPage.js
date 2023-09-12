@@ -1,6 +1,4 @@
 // импорт компонент
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
 import MovieCardList from '../MovieCardList/MovieCardList';
 import SearchForm from '../SearchForm/SearchForm';
 
@@ -11,13 +9,11 @@ import './SearchPage.css';
 const SearchPage = () => {
   return (
     <div className="search-page">
-      <Header></Header>
       <main className="search-page__content">
         <SearchForm></SearchForm>
         <MovieCardList></MovieCardList>
       </main>
       SearchPage
-      <Footer></Footer>
     </div>
   );
 };
