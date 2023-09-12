@@ -3,7 +3,11 @@ import './History.css';
 
 // компонент страницы с историей поисков ////////////////////////////////////
 const History = () => {
-  return <div>History</div>;
+  return (
+    <div className="history">
+      <main className="history__content">History</main>
+    </div>
+  );
 };
 
 // экспорт //////////////////////////////////////////////////////

@@ -3,7 +3,11 @@ import './Favorites.css';
 
 // компонент страницы с избранными фильмами ////////////////////////////////////
 const Favorites = () => {
-  return <div>Favorites</div>;
+  return (
+    <div className="favorites">
+      <main className="favorites__content">Favorites</main>
+    </div>
+  );
 };
 
 // экспорт //////////////////////////////////////////////////////
