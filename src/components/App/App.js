@@ -8,8 +8,7 @@ import History from '../History/History';
 import Register from '../Register/Register';
 import Favorites from '../Favorites/Favorites';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import ProtectedRouteLogged from '../ProtectedRouteLogged/ProtectedRouteLogged';
-import ProtectedRouteNotLogged from '../ProtectedRouteNotLogged/ProtectedRouteNotLogged';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 // импорт стилей
 import './App.css';
@@ -29,9 +28,9 @@ function App() {
         <Route
           path="/signin"
           element={
-            <ProtectedRouteLogged>
+            <ProtectedRoute>
               <Login></Login>
-            </ProtectedRouteLogged>
+            </ProtectedRoute>
           }
         ></Route>
 
@@ -39,9 +38,9 @@ function App() {
         <Route
           path="/signup"
           element={
-            <ProtectedRouteLogged>
+            <ProtectedRoute>
               <Register></Register>
-            </ProtectedRouteLogged>
+            </ProtectedRoute>
           }
         ></Route>
 
@@ -49,9 +48,9 @@ function App() {
         <Route
           path="/favorites"
           element={
-            <ProtectedRouteNotLogged>
+            <ProtectedRoute>
               <Favorites></Favorites>
-            </ProtectedRouteNotLogged>
+            </ProtectedRoute>
           }
         ></Route>
 
@@ -59,9 +58,9 @@ function App() {
         <Route
           path="/history"
           element={
-            <ProtectedRouteNotLogged>
+            <ProtectedRoute>
               <History></History>
-            </ProtectedRouteNotLogged>
+            </ProtectedRoute>
           }
         ></Route>
 
