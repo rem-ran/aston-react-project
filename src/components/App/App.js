@@ -2,13 +2,13 @@
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { auth } from '../../utils/fbConfig';
-import { toggleIsLoggedIn } from '../../store/userSlicer';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { toggleIsLoggedIn, setUser, resetUser } from '../../store/userSlicer';
 
 // импорт компонент
 import Main from '../Main/Main';
@@ -52,6 +52,7 @@ function App() {
         if (data.user.uid) {
           localStorage.setItem('token', data.user.uid);
           dispatch(toggleIsLoggedIn());
+          dispatch(setUser({ email: data.user.email, uid: data.user.uid }));
           navigate('/', { replace: true });
         }
       })
@@ -86,6 +87,7 @@ function App() {
         localStorage.removeItem('token');
         localStorage.clear();
         dispatch(toggleIsLoggedIn());
+        dispatch(resetUser());
         navigate('/');
       })
 
