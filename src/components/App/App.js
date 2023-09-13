@@ -6,6 +6,7 @@ import { toggleIsLoggedIn } from '../../store/userSlicer';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
@@ -76,6 +77,25 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
+  /////////////////////////////////////////////////////////////////////////
+
+  // метод выхода пользоваетля из системы firebase
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        localStorage.removeItem('token');
+        localStorage.clear();
+        dispatch(toggleIsLoggedIn());
+        navigate('/');
+      })
+
+      .catch((error) => {
+        console.log(`SignOut: ${error}`);
+      });
+  };
+
+  /////////////////////////////////////////////////////////////////////////
+
   // метод проверки токенов авторизированных пользователей, вернувшихся в приложение
   const handleTokenCheck = () => {
     const token = localStorage.getItem('token');
@@ -97,7 +117,7 @@ function App() {
   return (
     <div className="page">
       {/* рендерим хедер только в нужных роутах */}
-      {isHeaderFooterVisible && <Header />}
+      {isHeaderFooterVisible && <Header handleSignOut={handleSignOut}></Header>}
 
       <Routes>
         {/* рут авторизации //////////////////////////////,////////////////////*/}
@@ -153,7 +173,7 @@ function App() {
         ></Route>
 
         {/* рут несуществующей страницы /////////////////////////////////////*/}
-        <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
+        <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
 
       {/* рендерим футер только в нужных роутах */}
