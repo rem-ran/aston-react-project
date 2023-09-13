@@ -1,6 +1,6 @@
 // импорты
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { auth } from '../../utils/fbConfig';
 import { toggleIsLoggedIn } from '../../store/userSlicer';
 import {
@@ -40,6 +40,8 @@ function App() {
   // переменная состояния загрузки
   const [isLoading, setIsLoading] = useState(false);
 
+  /////////////////////////////////////////////////////////////////////////
+
   // метода авторизации пользоваетля на странице через firebase
   const handleUserSignIn = ({ email, password }) => {
     setIsLoading(true);
@@ -58,6 +60,8 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
+  /////////////////////////////////////////////////////////////////////////
+
   // метод регистрации пользоваетля на странице через firebase
   const handleUserSignUp = ({ email, password }) => {
     setIsLoading(true);
@@ -71,6 +75,23 @@ function App() {
 
       .finally(() => setIsLoading(false));
   };
+
+  // метод проверки токенов авторизированных пользователей, вернувшихся в приложение
+  const handleTokenCheck = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      dispatch(toggleIsLoggedIn());
+
+      navigate(location.pathname, { replace: true });
+    }
+  };
+
+  /////////////////////////////////////////////////////////////////////////
+
+  // вызываем метод проверки токенов при рендеринге приложения
+  useEffect(() => {
+    handleTokenCheck();
+  }, []);
 
   // начало JSX ////////////////////////////////////////////////////////////
   return (
