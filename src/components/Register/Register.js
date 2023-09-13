@@ -15,7 +15,7 @@ import '../CommonSignPage/CommonSignPage.css';
 const { heading, btnTxt, linkRoute, questionTxt, linkTxt } = registerTxt;
 
 // компонет регистрации //////////////////////////////////////////////////////
-const Register = ({ isLoading }) => {
+const Register = ({ handleUserSignUp, isLoading }) => {
   //подключаем пакет валидации форм
   const {
     register,
@@ -27,7 +27,7 @@ const Register = ({ isLoading }) => {
 
   // метод обработки сабмита формы
   const onSubmit = (inputData) => {
-    console.log(inputData);
+    handleUserSignUp(inputData);
   };
 
   // начало JSX ////////////////////////////////////////////////////////////

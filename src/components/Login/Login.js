@@ -13,7 +13,7 @@ import '../CommonSignPage/CommonSignPage.css';
 const { heading, btnTxt, linkRoute, questionTxt, linkTxt } = loginTxt;
 
 // компонет авторизации //////////////////////////////////////////////////////
-const Login = ({ isLoading }) => {
+const Login = ({ isLoading, handleUserSignIn }) => {
   //подключаем пакет валидации форм
   const {
     register,
@@ -24,9 +24,9 @@ const Login = ({ isLoading }) => {
   });
 
   // метод обработки сабмита формы
-  function onSubmit(inputData) {
-    console.log(inputData);
-  }
+  const onSubmit = (inputData) => {
+    handleUserSignIn(inputData);
+  };
 
   // начало JSX ////////////////////////////////////////////////////////////
   return (

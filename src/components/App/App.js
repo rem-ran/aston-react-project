@@ -1,5 +1,13 @@
 // импорты
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { auth } from '../../utils/fbConfig';
+import { toggleIsLoggedIn } from '../../store/userSlicer';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 // импорт компонент
 import Main from '../Main/Main';
@@ -18,6 +26,8 @@ import './App.css';
 
 function App() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // список роутов, в которых нужен хедер и футер
   const headerFooterVisibleRoutes = ['/', '/search', '/history', '/favorites'];
@@ -26,6 +36,41 @@ function App() {
   const isHeaderFooterVisible = headerFooterVisibleRoutes.includes(
     location.pathname
   );
+
+  // переменная состояния загрузки
+  const [isLoading, setIsLoading] = useState(false);
+
+  // метода авторизации пользоваетля на странице через firebase
+  const handleUserSignIn = ({ email, password }) => {
+    setIsLoading(true);
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((data) => {
+        if (data.user.uid) {
+          localStorage.setItem('token', data.user.uid);
+          dispatch(toggleIsLoggedIn());
+          navigate('/', { replace: true });
+        }
+      })
+
+      .catch((error) => console.log(`SignIn Error${error}`))
+
+      .finally(() => setIsLoading(false));
+  };
+
+  // метод регистрации пользоваетля на странице через firebase
+  const handleUserSignUp = ({ email, password }) => {
+    setIsLoading(true);
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        handleUserSignIn({ email, password });
+      })
+
+      .catch((error) => console.log(`SignUp Error${error}`))
+
+      .finally(() => setIsLoading(false));
+  };
 
   // начало JSX ////////////////////////////////////////////////////////////
   return (
@@ -39,7 +84,10 @@ function App() {
           path="/signin"
           element={
             <ProtectedRoute>
-              <Login></Login>
+              <Login
+                handleUserSignIn={handleUserSignIn}
+                isLoading={isLoading}
+              ></Login>
             </ProtectedRoute>
           }
         ></Route>
@@ -49,7 +97,10 @@ function App() {
           path="/signup"
           element={
             <ProtectedRoute>
-              <Register></Register>
+              <Register
+                handleUserSignUp={handleUserSignUp}
+                isLoading={isLoading}
+              ></Register>
             </ProtectedRoute>
           }
         ></Route>
