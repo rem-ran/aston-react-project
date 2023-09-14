@@ -46,7 +46,7 @@ function App() {
   // переменная состояния массива всех полученных фильмов
   const [movies, setMovies] = useState([]);
 
-  const handleMovieSearch = () => {
+  const getInitialMovies = () => {
     movieApi
       .getAllMovies()
       .then(({ docs }) => {
@@ -125,6 +125,14 @@ function App() {
 
   /////////////////////////////////////////////////////////////////////////
 
+  useEffect(() => {
+    if (location.pathname === '/') {
+      getInitialMovies();
+    }
+  }, []);
+
+  /////////////////////////////////////////////////////////////////////////
+
   // вызываем метод проверки токенов при рендеринге приложения
   useEffect(() => {
     handleTokenCheck();
@@ -164,13 +172,7 @@ function App() {
         ></Route>
 
         {/* рут с главной страницей с фильмами /////////////////////////////////*/}
-        <Route
-          path="/"
-          exact
-          element={
-            <Main movies={movies} handleMovieSearch={handleMovieSearch}></Main>
-          }
-        ></Route>
+        <Route path="/" exact element={<Main movies={movies}></Main>}></Route>
 
         {/* рут со страницей с поиском фильмов /////////////////////////////////*/}
         <Route path="/search" exact element={<SearchPage></SearchPage>}></Route>

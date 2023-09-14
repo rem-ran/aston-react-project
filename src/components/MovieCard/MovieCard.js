@@ -2,7 +2,7 @@
 import './MovieCard.css';
 
 // компонент карточки фильма ////////////////////////////////////
-const MovieCard = ({ id, logo, name, movieLength }) => {
+const MovieCard = ({ id, poster, name, year, movieLength }) => {
   //метод подсчёта времени в часах и минутах
   const calculateTiming = (minutes) => {
     return `${Math.floor(minutes / 60)}ч ${minutes % 60}м`;
@@ -11,11 +11,11 @@ const MovieCard = ({ id, logo, name, movieLength }) => {
   return (
     <li className="movie" id={id}>
       <a href={'#'} target="_blank" rel="noopener noreferrer">
-        <img className="movie_image" src={logo.url} />
+        <img className="movie_image" src={poster.previewUrl} />
       </a>
       <div className="movie__text-box">
         <div className="movie__name-box">
-          <p className="movie__heading">{name}</p>
+          <p className="movie__heading">{`${name} (${year})`}</p>
           <button
             className={`movie__like-btn`}
             aria-label="Like"

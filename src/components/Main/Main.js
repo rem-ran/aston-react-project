@@ -6,11 +6,11 @@ import MovieCardList from '../MovieCardList/MovieCardList';
 import './Main.css';
 
 // компонент главной страницы с фильмами ////////////////////////////////////
-const Main = ({ movies, handleMovieSearch }) => {
+const Main = ({ movies }) => {
   return (
     <div className="movies">
       <main className="saved-movies__content">
-        <SearchForm handleMovieSearch={handleMovieSearch}></SearchForm>
+        <SearchForm></SearchForm>
         <MovieCardList movies={movies}></MovieCardList>
       </main>
     </div>

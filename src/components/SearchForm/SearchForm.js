@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import './SearchForm.css';
 
 // компонент формы поиска фильмов ////////////////////////////////////
-const SearchForm = ({ handleMovieSearch }) => {
+const SearchForm = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -20,7 +20,6 @@ const SearchForm = ({ handleMovieSearch }) => {
   // метод обработки отправки формы
   const onSearch = (e) => {
     e.preventDefault();
-    handleMovieSearch();
     console.log(searchInputValue);
 
     // переводим на стртаницу поиска, если поиск произошёл на главной странице
