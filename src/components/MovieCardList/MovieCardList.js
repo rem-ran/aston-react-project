@@ -2,7 +2,7 @@
 import './MovieCardList.css';
 
 // компонент списка карточек фильмов ////////////////////////////////////
-const MovieCardList = () => {
+const MovieCardList = ({ movies }) => {
   return <div>MovieCardList</div>;
 };
 

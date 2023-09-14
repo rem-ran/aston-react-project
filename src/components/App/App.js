@@ -22,6 +22,8 @@ import SearchPage from '../SearchPage/SearchPage';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
+import movieApi from '../../utils/MovieApi';
+
 // импорт стилей
 import './App.css';
 
@@ -40,6 +42,19 @@ function App() {
 
   // переменная состояния загрузки
   const [isLoading, setIsLoading] = useState(false);
+
+  // переменная состояния массива всех полученных фильмов
+  const [movies, setMovies] = useState([]);
+
+  const handleMovieSearch = () => {
+    movieApi
+      .getAllMovies()
+      .then(({ docs }) => {
+        console.log(docs);
+        setMovies(docs);
+      })
+      .catch((error) => console.log(error));
+  };
 
   /////////////////////////////////////////////////////////////////////////
 
@@ -149,7 +164,13 @@ function App() {
         ></Route>
 
         {/* рут с главной страницей с фильмами /////////////////////////////////*/}
-        <Route path="/" exact element={<Main></Main>}></Route>
+        <Route
+          path="/"
+          exact
+          element={
+            <Main movies={movies} handleMovieSearch={handleMovieSearch}></Main>
+          }
+        ></Route>
 
         {/* рут со страницей с поиском фильмов /////////////////////////////////*/}
         <Route path="/search" exact element={<SearchPage></SearchPage>}></Route>
