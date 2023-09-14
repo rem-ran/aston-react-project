@@ -29,3 +29,42 @@ export const footerLinks = [
     link: 'https://github.com/rem-ran/aston-react-project',
   },
 ];
+
+// текст лэёблов инпутов
+export const inputLabelTxt = {
+  email: 'E-mail',
+  password: 'Пароль',
+};
+
+// текст полей страницы авторизации
+export const loginTxt = {
+  heading: 'Есть аккаунт? Вперёд!',
+  btnTxt: 'Войти',
+  linkTxt: 'Регистрация',
+  linkRoute: '/signup',
+  questionTxt: 'Ещё не зарегистрированы?',
+};
+
+// текст полей страницы регистрации
+export const registerTxt = {
+  heading: 'Тут можно зарегистрироваться!',
+  btnTxt: 'Зарегистрироваться',
+  linkTxt: 'Войти',
+  linkRoute: '/signin',
+  questionTxt: 'Уже зарегистрированы?',
+};
+
+//настройки зарегистрированных инпутов
+export const inputConfig = {
+  email: {
+    required: 'Поле "E-mail" обязательно к заполнению',
+    pattern: {
+      value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
+      message: 'Пожалуйста введите валидный email адрес',
+    },
+  },
+  password: {
+    required: 'Поле "Пароль" обязательно к заполнению',
+    minLength: { value: 3, message: 'Длина поля "Пароль" минумум 3 символа' },
+  },
+};

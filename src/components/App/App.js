@@ -1,5 +1,14 @@
 // импорты
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { auth } from '../../utils/fbConfig';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { toggleIsLoggedIn, setUser, resetUser } from '../../store/userSlicer';
 
 // импорт компонент
 import Main from '../Main/Main';
@@ -18,6 +27,8 @@ import './App.css';
 
 function App() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // список роутов, в которых нужен хедер и футер
   const headerFooterVisibleRoutes = ['/', '/search', '/history', '/favorites'];
@@ -27,10 +38,88 @@ function App() {
     location.pathname
   );
 
+  // переменная состояния загрузки
+  const [isLoading, setIsLoading] = useState(false);
+
+  /////////////////////////////////////////////////////////////////////////
+
+  // метода авторизации пользоваетля на странице через firebase
+  const handleUserSignIn = ({ email, password }) => {
+    setIsLoading(true);
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((data) => {
+        if (data.user.uid) {
+          localStorage.setItem('token', data.user.uid);
+          dispatch(toggleIsLoggedIn());
+          dispatch(setUser({ email: data.user.email, uid: data.user.uid }));
+          navigate('/', { replace: true });
+        }
+      })
+
+      .catch((error) => console.log(`SignIn Error${error}`))
+
+      .finally(() => setIsLoading(false));
+  };
+
+  /////////////////////////////////////////////////////////////////////////
+
+  // метод регистрации пользоваетля на странице через firebase
+  const handleUserSignUp = ({ email, password }) => {
+    setIsLoading(true);
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        handleUserSignIn({ email, password });
+      })
+
+      .catch((error) => console.log(`SignUp Error${error}`))
+
+      .finally(() => setIsLoading(false));
+  };
+
+  /////////////////////////////////////////////////////////////////////////
+
+  // метод выхода пользоваетля из системы firebase
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        localStorage.removeItem('token');
+        localStorage.clear();
+        dispatch(toggleIsLoggedIn());
+        dispatch(resetUser());
+        navigate('/');
+      })
+
+      .catch((error) => {
+        console.log(`SignOut: ${error}`);
+      });
+  };
+
+  /////////////////////////////////////////////////////////////////////////
+
+  // метод проверки токенов авторизированных пользователей, вернувшихся в приложение
+  const handleTokenCheck = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      dispatch(toggleIsLoggedIn());
+
+      navigate(location.pathname, { replace: true });
+    }
+  };
+
+  /////////////////////////////////////////////////////////////////////////
+
+  // вызываем метод проверки токенов при рендеринге приложения
+  useEffect(() => {
+    handleTokenCheck();
+  }, []);
+
+  // начало JSX ////////////////////////////////////////////////////////////
   return (
     <div className="page">
       {/* рендерим хедер только в нужных роутах */}
-      {isHeaderFooterVisible && <Header />}
+      {isHeaderFooterVisible && <Header handleSignOut={handleSignOut}></Header>}
 
       <Routes>
         {/* рут авторизации //////////////////////////////,////////////////////*/}
@@ -38,7 +127,10 @@ function App() {
           path="/signin"
           element={
             <ProtectedRoute>
-              <Login></Login>
+              <Login
+                handleUserSignIn={handleUserSignIn}
+                isLoading={isLoading}
+              ></Login>
             </ProtectedRoute>
           }
         ></Route>
@@ -48,7 +140,10 @@ function App() {
           path="/signup"
           element={
             <ProtectedRoute>
-              <Register></Register>
+              <Register
+                handleUserSignUp={handleUserSignUp}
+                isLoading={isLoading}
+              ></Register>
             </ProtectedRoute>
           }
         ></Route>
@@ -80,7 +175,7 @@ function App() {
         ></Route>
 
         {/* рут несуществующей страницы /////////////////////////////////////*/}
-        <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
+        <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
 
       {/* рендерим футер только в нужных роутах */}

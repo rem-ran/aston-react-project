@@ -1,6 +1,6 @@
 // импорты
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // импорт констант
 import {
@@ -11,12 +11,14 @@ import {
 
 // импорт стилей
 import './Navigation.css';
-import { toggleIsLoggedIn } from '../../store/userSlicer';
 
 // компонент навигации на страницах с фильмами /////////////////////////
-const Navigation = () => {
+const Navigation = ({ handleSignOut }) => {
   const isLoggedIn = useSelector(({ user }) => user.isLoggedIn);
-  const dispatch = useDispatch();
+
+  const onSignOut = () => {
+    handleSignOut();
+  };
 
   return (
     <div className="nav__link-container nav__link-container_type_hidden">
@@ -33,7 +35,7 @@ const Navigation = () => {
           <NavLink
             to={headerSignoutLink.route}
             className={'nav__link'}
-            onClick={() => dispatch(toggleIsLoggedIn())}
+            onClick={onSignOut}
           >
             {headerSignoutLink.text}
           </NavLink>
