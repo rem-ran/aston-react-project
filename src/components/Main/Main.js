@@ -6,12 +6,12 @@ import MovieCardList from '../MovieCardList/MovieCardList';
 import './Main.css';
 
 // компонент главной страницы с фильмами ////////////////////////////////////
-const Main = ({ movies }) => {
+const Main = () => {
   return (
     <div className="movies">
       <main className="saved-movies__content">
         <SearchForm></SearchForm>
-        <MovieCardList movies={movies}></MovieCardList>
+        <MovieCardList></MovieCardList>
       </main>
     </div>
   );

@@ -1,7 +1,9 @@
 // импорты
-import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { auth } from '../../utils/fbConfig';
+import { fetchMovies } from '../../store/moviesSlicer';
+import { useDispatch, useSelector } from 'react-redux';
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -22,13 +24,11 @@ import SearchPage from '../SearchPage/SearchPage';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import movieApi from '../../utils/MovieApi';
-
 // импорт стилей
 import './App.css';
 
 function App() {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -36,25 +36,10 @@ function App() {
   const headerFooterVisibleRoutes = ['/', '/search', '/history', '/favorites'];
 
   // переменная, по которой будем определять через location нужен ли нам хедер и футер
-  const isHeaderFooterVisible = headerFooterVisibleRoutes.includes(
-    location.pathname
-  );
+  const isHeaderFooterVisible = headerFooterVisibleRoutes.includes(pathname);
 
   // переменная состояния загрузки
   const [isLoading, setIsLoading] = useState(false);
-
-  // переменная состояния массива всех полученных фильмов
-  const [movies, setMovies] = useState([]);
-
-  const getInitialMovies = () => {
-    movieApi
-      .getAllMovies()
-      .then(({ docs }) => {
-        console.log(docs);
-        setMovies(docs);
-      })
-      .catch((error) => console.log(error));
-  };
 
   /////////////////////////////////////////////////////////////////////////
 
@@ -119,17 +104,17 @@ function App() {
     if (token) {
       dispatch(toggleIsLoggedIn());
 
-      navigate(location.pathname, { replace: true });
+      navigate(pathname, { replace: true });
     }
   };
 
   /////////////////////////////////////////////////////////////////////////
 
   useEffect(() => {
-    if (location.pathname === '/') {
-      getInitialMovies();
+    if (pathname === '/') {
+      dispatch(fetchMovies());
     }
-  }, []);
+  }, [dispatch, pathname]);
 
   /////////////////////////////////////////////////////////////////////////
 
@@ -172,7 +157,7 @@ function App() {
         ></Route>
 
         {/* рут с главной страницей с фильмами /////////////////////////////////*/}
-        <Route path="/" exact element={<Main movies={movies}></Main>}></Route>
+        <Route path="/" exact element={<Main></Main>}></Route>
 
         {/* рут со страницей с поиском фильмов /////////////////////////////////*/}
         <Route path="/search" exact element={<SearchPage></SearchPage>}></Route>

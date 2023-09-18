@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+
 // импорт компонент
 import MovieCard from '../MovieCard/MovieCard';
 
@@ -5,7 +7,11 @@ import MovieCard from '../MovieCard/MovieCard';
 import './MovieCardList.css';
 
 // компонент списка карточек фильмов ////////////////////////////////////
-const MovieCardList = ({ movies }) => {
+const MovieCardList = () => {
+  const movies = useSelector((state) => state.movies.docs);
+  if (!movies) {
+    return null;
+  }
   return (
     <section className="movies-list">
       <ul className="movies-list__container">

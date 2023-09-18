@@ -1,14 +1,4 @@
-// import { apiMovieConfig } from './constants.js';
-
-//объект с нужными для работы с сервером данными
-export const apiMovieConfig = {
-  url: 'https://api.kinopoisk.dev/v1.3/movie',
-  credentials: 'include',
-  headers: {
-    'Content-Type': 'application/json',
-    'X-API-KEY': '7TX903H-MWB432H-GXEP354-DJ98C1G',
-  },
-};
+import { apiMovieConfig } from './constants.js';
 
 class MovieApi {
   constructor({ url, headers, credentials }) {

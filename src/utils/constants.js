@@ -1,3 +1,13 @@
+// объект с нужными для работы с сервером данными
+export const apiMovieConfig = {
+  url: 'https://api.kinopoisk.dev/v1.3/movie',
+  credentials: 'include',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-API-KEY': '7TX903H-MWB432H-GXEP354-DJ98C1G',
+  },
+};
+
 // список необходимых ссылок (авторизованных) для хедера на страницах с фильмами
 export const headerLinks = [
   { route: '/favorites', text: 'Избранные фильмы' },

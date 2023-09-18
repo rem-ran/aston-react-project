@@ -1,17 +1,14 @@
+import { calculateTiming } from '../../utils/utils';
+
 // импорт стилей
 import './MovieCard.css';
 
 // компонент карточки фильма ////////////////////////////////////
 const MovieCard = ({ id, poster, name, year, movieLength }) => {
-  //метод подсчёта времени в часах и минутах
-  const calculateTiming = (minutes) => {
-    return `${Math.floor(minutes / 60)}ч ${minutes % 60}м`;
-  };
-
   return (
     <li className="movie" id={id}>
       <a href={'#'} target="_blank" rel="noopener noreferrer">
-        <img className="movie_image" src={poster.previewUrl} />
+        <img className="movie_image" src={poster.previewUrl} alt={name} />
       </a>
       <div className="movie__text-box">
         <div className="movie__name-box">
