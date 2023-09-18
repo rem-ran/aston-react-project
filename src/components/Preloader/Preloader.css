@@ -1,0 +1,103 @@
+/* Preloader styles */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.preloader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background overlay */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.preloader__container {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  animation: rotate 1s linear infinite;
+  /* Rotate the whole preloader */
+  border: 6px solid transparent;
+  border-top: 6px solid #3498db;
+  /* Blue border color */
+  border-radius: 50%;
+}
+
+.preloader__text {
+  font-size: 20px;
+  color: #ffffff;
+  margin-top: 20px;
+  text-align: center;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.preloader__round::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  /* Semi-transparent white */
+  animation: fade 1s ease infinite alternate;
+  /* Fading effect */
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 0.8;
+  }
+}
+
+.preloader__round::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  z-index: -1;
+  background: linear-gradient(45deg, #3498db, #f39c12, #e74c3c, #9b59b6);
+  /* Colorful gradient */
+  background-size: 400% 400%;
+  animation: gradient 4s ease infinite;
+  /* Colorful gradient animation */
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

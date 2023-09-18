@@ -5,12 +5,13 @@ import MovieCard from '../MovieCard/MovieCard';
 
 // импорт стилей
 import './MovieCardList.css';
+import Preloader from '../Preloader/Preloader';
 
 // компонент списка карточек фильмов ////////////////////////////////////
 const MovieCardList = () => {
   const movies = useSelector((state) => state.movies.docs);
   if (!movies) {
-    return null;
+    return <Preloader />;
   }
   return (
     <section className="movies-list">
