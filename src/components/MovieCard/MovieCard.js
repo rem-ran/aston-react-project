@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { calculateTiming } from '../../utils/utils';
 
 // импорт стилей
@@ -5,6 +6,11 @@ import './MovieCard.css';
 
 // компонент карточки фильма ////////////////////////////////////
 const MovieCard = ({ id, poster, name, year, movieLength }) => {
+  const [isLiked, setIsLiked] = useState(false);
+  const handleAddToFavotites = () => {
+    setIsLiked((isLiked) => !isLiked);
+  };
+
   return (
     <li className="movie" id={id}>
       <a href={'#'} target="_blank" rel="noopener noreferrer">
@@ -14,10 +20,10 @@ const MovieCard = ({ id, poster, name, year, movieLength }) => {
         <div className="movie__name-box">
           <p className="movie__heading">{`${name} (${year})`}</p>
           <button
-            className={`movie__like-btn`}
+            className={`movie__like-btn ${isLiked && 'movie__like-btn_active'}`}
             aria-label="Like"
             type="button"
-            onClick={() => console.log('click')}
+            onClick={handleAddToFavotites}
           />
         </div>
         <span className="movie__duration">{calculateTiming(movieLength)}</span>

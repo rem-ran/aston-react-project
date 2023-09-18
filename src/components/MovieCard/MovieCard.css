@@ -94,6 +94,10 @@
     transition: linear 0.3s;
 }
 
+.movie__like-btn_active {
+    background: no-repeat url("../../images/favorites-icon.png");
+}
+
 .movie__like-btn:hover {
     opacity: 0.7;
     cursor: pointer;
