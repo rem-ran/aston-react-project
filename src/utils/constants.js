@@ -1,6 +1,6 @@
 // объект с нужными для работы с сервером данными
 export const apiMovieConfig = {
-  url: 'https://api.kinopoisk.dev/v1.3/movie?limit=30',
+  url: 'https://api.kinopoisk.dev',
   credentials: 'include',
   headers: {
     'Content-Type': 'application/json',

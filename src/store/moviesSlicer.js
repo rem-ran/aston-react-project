@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import movieApi from '../utils/MovieApi';
 
-// Create an async thunk for fetching movies
 export const fetchMovies = createAsyncThunk('movie/fetchMovies', async () => {
   return await movieApi
     .getAllMovies()
@@ -9,24 +8,31 @@ export const fetchMovies = createAsyncThunk('movie/fetchMovies', async () => {
     .catch((error) => console.log(error));
 });
 
+export const fetchFilteredMovies = createAsyncThunk(
+  'movie/fetchFilteredMovies',
+  async (query) => {
+    return await movieApi
+      .getFilteredMovies(query)
+      .then((filteredMovies) => filteredMovies)
+      .catch((error) => console.log(error));
+  }
+);
+
 const movieSlice = createSlice({
   name: 'movie',
   initialState: {
     movies: [],
-    searchResults: [],
+    filteredMovies: [],
   },
-  reducers: {
-    setSearchResults: (state, action) => {
-      state.searchResults = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.fulfilled, (state, action) => {
       state.docs = action.payload.docs;
     });
+    builder.addCase(fetchFilteredMovies.fulfilled, (state, action) => {
+      state.filteredMovies = action.payload.docs;
+    });
   },
 });
-
-export const { setSearchResults } = movieSlice.actions;
 
 export default movieSlice.reducer;

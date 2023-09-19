@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { setSearchResults } from '../../store/moviesSlicer';
+import { fetchFilteredMovies } from '../../store/moviesSlicer';
 
 // импорт стилей
 import './SearchForm.css';
@@ -15,8 +15,6 @@ const SearchForm = () => {
   // переменная состояния введённого текста в инпут
   const [searchInputValue, setSearchInputValue] = useState('');
 
-  const allMovies = useSelector((state) => state.movies.docs);
-
   // переводим введенный в инпуте текст в нижний регистр
   const handleSearchValue = (e) => {
     setSearchInputValue(e.target.value.toLowerCase());
@@ -26,13 +24,7 @@ const SearchForm = () => {
   const onSearch = (e) => {
     e.preventDefault();
 
-    const filteredMovies = allMovies.filter(
-      (movie) =>
-        movie.name.toLowerCase().includes(searchInputValue) ||
-        movie.alternativeName?.toLowerCase().includes(searchInputValue)
-    );
-
-    dispatch(setSearchResults(filteredMovies));
+    dispatch(fetchFilteredMovies(searchInputValue));
 
     // переводим на стртаницу поиска, если поиск произошёл на главной странице
     if (pathname === '/') {

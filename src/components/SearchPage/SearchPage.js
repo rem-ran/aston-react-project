@@ -8,7 +8,8 @@ import './SearchPage.css';
 
 // компонент страницы с поиском фильмов ////////////////////////////////////
 const SearchPage = () => {
-  const filteredMovies = useSelector((state) => state.movies.searchResults);
+  const filteredMovies = useSelector((state) => state.movies.filteredMovies);
+
   return (
     <div className="search-page">
       <main className="search-page__content">
