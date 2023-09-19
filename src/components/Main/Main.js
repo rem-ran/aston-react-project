@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMovies } from '../../store/moviesSlicer';
+import { fetchMovies } from '../../store/moviesSlice';
 
 // импорт компонент
 import SearchForm from '../SearchForm/SearchForm';

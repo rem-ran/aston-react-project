@@ -9,7 +9,7 @@ import {
   signOut,
 } from 'firebase/auth';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { toggleIsLoggedIn, setUser, resetUser } from '../../store/userSlicer';
+import { toggleIsLoggedIn, setUser, resetUser } from '../../store/userSlice';
 
 // импорт компонент
 import Main from '../Main/Main';

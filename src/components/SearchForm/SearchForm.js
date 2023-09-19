@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { fetchFilteredMovies } from '../../store/moviesSlicer';
+import { fetchFilteredMovies } from '../../store/moviesSlice';
 
 // импорт стилей
 import './SearchForm.css';
