@@ -13,13 +13,20 @@ const movieSlice = createSlice({
   name: 'movie',
   initialState: {
     movies: [],
+    searchResults: [],
   },
-  reducers: {},
+  reducers: {
+    setSearchResults: (state, action) => {
+      state.searchResults = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.fulfilled, (state, action) => {
       state.docs = action.payload.docs;
     });
   },
 });
+
+export const { setSearchResults } = movieSlice.actions;
 
 export default movieSlice.reducer;

@@ -13,7 +13,6 @@ const SearchPage = () => {
         <SearchForm></SearchForm>
         <MovieCardList></MovieCardList>
       </main>
-      SearchPage
     </div>
   );
 };
