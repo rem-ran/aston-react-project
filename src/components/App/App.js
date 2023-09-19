@@ -1,7 +1,9 @@
 // импорты
-import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { auth } from '../../utils/fbConfig';
+import { fetchMovies } from '../../store/moviesSlicer';
+import { useDispatch, useSelector } from 'react-redux';
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -26,7 +28,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import './App.css';
 
 function App() {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -34,9 +36,7 @@ function App() {
   const headerFooterVisibleRoutes = ['/', '/search', '/history', '/favorites'];
 
   // переменная, по которой будем определять через location нужен ли нам хедер и футер
-  const isHeaderFooterVisible = headerFooterVisibleRoutes.includes(
-    location.pathname
-  );
+  const isHeaderFooterVisible = headerFooterVisibleRoutes.includes(pathname);
 
   // переменная состояния загрузки
   const [isLoading, setIsLoading] = useState(false);
@@ -104,7 +104,7 @@ function App() {
     if (token) {
       dispatch(toggleIsLoggedIn());
 
-      navigate(location.pathname, { replace: true });
+      navigate(pathname, { replace: true });
     }
   };
 

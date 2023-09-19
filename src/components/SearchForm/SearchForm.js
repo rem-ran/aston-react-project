@@ -20,7 +20,6 @@ const SearchForm = () => {
   // метод обработки отправки формы
   const onSearch = (e) => {
     e.preventDefault();
-
     console.log(searchInputValue);
 
     // переводим на стртаницу поиска, если поиск произошёл на главной странице
