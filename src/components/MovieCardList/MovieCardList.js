@@ -1,5 +1,3 @@
-import { useSelector } from 'react-redux';
-
 // импорт компонент
 import MovieCard from '../MovieCard/MovieCard';
 
@@ -8,8 +6,7 @@ import './MovieCardList.css';
 import Preloader from '../Preloader/Preloader';
 
 // компонент списка карточек фильмов ////////////////////////////////////
-const MovieCardList = () => {
-  const movies = useSelector((state) => state.movies.docs);
+const MovieCardList = ({ movies }) => {
   if (!movies) {
     return <Preloader />;
   }

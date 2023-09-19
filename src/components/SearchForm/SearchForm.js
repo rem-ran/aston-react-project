@@ -15,7 +15,7 @@ const SearchForm = () => {
   // переменная состояния введённого текста в инпут
   const [searchInputValue, setSearchInputValue] = useState('');
 
-  const movies = useSelector((state) => state.movies.docs);
+  const allMovies = useSelector((state) => state.movies.docs);
 
   // переводим введенный в инпуте текст в нижний регистр
   const handleSearchValue = (e) => {
@@ -26,7 +26,7 @@ const SearchForm = () => {
   const onSearch = (e) => {
     e.preventDefault();
 
-    const filteredMovies = movies.filter((movie) =>
+    const filteredMovies = allMovies.filter((movie) =>
       movie.name.toLowerCase().includes(searchInputValue)
     );
 

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies } from '../../store/moviesSlicer';
 
 // импорт компонент
@@ -12,6 +12,9 @@ import './Main.css';
 // компонент главной страницы с фильмами ////////////////////////////////////
 const Main = () => {
   const dispatch = useDispatch();
+
+  const allMovies = useSelector((state) => state.movies.docs);
+
   useEffect(() => {
     dispatch(fetchMovies());
   }, [dispatch]);
@@ -20,7 +23,7 @@ const Main = () => {
     <div className="movies">
       <main className="saved-movies__content">
         <SearchForm></SearchForm>
-        <MovieCardList></MovieCardList>
+        <MovieCardList movies={allMovies}></MovieCardList>
       </main>
     </div>
   );
