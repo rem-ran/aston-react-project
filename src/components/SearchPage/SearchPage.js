@@ -1,4 +1,5 @@
 // импорт компонент
+import { useSelector } from 'react-redux';
 import MovieCardList from '../MovieCardList/MovieCardList';
 import SearchForm from '../SearchForm/SearchForm';
 
@@ -7,13 +8,14 @@ import './SearchPage.css';
 
 // компонент страницы с поиском фильмов ////////////////////////////////////
 const SearchPage = () => {
+  const filteredMovies = useSelector((state) => state.movies.filteredMovies);
+
   return (
     <div className="search-page">
       <main className="search-page__content">
         <SearchForm></SearchForm>
-        <MovieCardList></MovieCardList>
+        <MovieCardList movies={filteredMovies}></MovieCardList>
       </main>
-      SearchPage
     </div>
   );
 };

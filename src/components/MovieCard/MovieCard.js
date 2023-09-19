@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { calculateTiming } from '../../utils/utils';
 
 // импорт стилей
@@ -6,7 +7,10 @@ import './MovieCard.css';
 
 // компонент карточки фильма ////////////////////////////////////
 const MovieCard = ({ id, poster, name, year, movieLength }) => {
+  const { pathname } = useLocation();
+
   const [isLiked, setIsLiked] = useState(false);
+
   const handleAddToFavotites = () => {
     setIsLiked((isLiked) => !isLiked);
   };
@@ -14,7 +18,11 @@ const MovieCard = ({ id, poster, name, year, movieLength }) => {
   return (
     <li className="movie" id={id}>
       <a href={'#'} target="_blank" rel="noopener noreferrer">
-        <img className="movie_image" src={poster.previewUrl} alt={name} />
+        <img
+          className="movie_image"
+          src={pathname === '/' ? poster.previewUrl : poster}
+          alt={name}
+        />
       </a>
       <div className="movie__text-box">
         <div className="movie__name-box">

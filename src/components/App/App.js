@@ -1,8 +1,7 @@
 // импорты
 import { useEffect, useState } from 'react';
 import { auth } from '../../utils/fbConfig';
-import { fetchMovies } from '../../store/moviesSlicer';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import {
   createUserWithEmailAndPassword,

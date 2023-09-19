@@ -17,7 +17,15 @@ class MovieApi {
 
   //получить список всех фильмов в виде массива
   getAllMovies() {
-    return fetch(`${this._url}`, {
+    return fetch(`${this._url}/v1.3/movie?limit=30`, {
+      method: 'GET',
+      headers: this._headers,
+    }).then(this._getResponseData);
+  }
+
+  //получить список отфильтрованных фильмов в виде массива
+  getFilteredMovies(query) {
+    return fetch(`${this._url}/v1.2/movie/search?query=${query}`, {
       method: 'GET',
       headers: this._headers,
     }).then(this._getResponseData);
