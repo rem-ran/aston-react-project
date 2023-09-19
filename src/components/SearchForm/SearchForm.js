@@ -26,8 +26,10 @@ const SearchForm = () => {
   const onSearch = (e) => {
     e.preventDefault();
 
-    const filteredMovies = allMovies.filter((movie) =>
-      movie.name.toLowerCase().includes(searchInputValue)
+    const filteredMovies = allMovies.filter(
+      (movie) =>
+        movie.name.toLowerCase().includes(searchInputValue) ||
+        movie.alternativeName?.toLowerCase().includes(searchInputValue)
     );
 
     dispatch(setSearchResults(filteredMovies));
