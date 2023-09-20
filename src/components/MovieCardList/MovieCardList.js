@@ -10,10 +10,12 @@ const MovieCardList = ({ movies }) => {
   if (!movies) {
     return <Preloader />;
   }
+
+  const mov = [];
   return (
     <section className="movies-list">
       <ul className="movies-list__container">
-        {movies.map((movie) => (
+        {mov.map((movie) => (
           <MovieCard key={movie.id} {...movie} />
         ))}
       </ul>

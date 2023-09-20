@@ -1,17 +1,41 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import historyFbService from '../utils/HistoryFirebaseService';
+
+export const addToHistory = createAsyncThunk(
+  'history/addToHistory',
+  async (query) => {
+    try {
+      await historyFbService.addToHistory(query);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const getSearchHistory = createAsyncThunk(
+  'history/getSearchHistory',
+  async () => {
+    try {
+      const history = await historyFbService.getSearchHistory();
+      return history;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 const historySlice = createSlice({
   name: 'history',
-  initialState: [],
-  reducers: {
-    addToHistory: (state, action) => {
-      const queryToAdd = action.payload;
-      if (!state.includes(queryToAdd)) {
-        state.push(queryToAdd);
-      }
-    },
+  initialState: { history: [] },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(addToHistory.fulfilled, (state, action) => {
+      console.log('history added');
+    });
+    builder.addCase(getSearchHistory.fulfilled, (state, action) => {
+      state.history = action.payload;
+    });
   },
 });
 
-export const { addToHistory } = historySlice.actions;
 export default historySlice.reducer;

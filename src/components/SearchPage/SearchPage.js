@@ -22,10 +22,9 @@ const SearchPage = () => {
 
   useEffect(() => {
     if (query) {
-      console.log(query);
       dispatch(fetchFilteredMovies(query));
     }
-  }, [query]);
+  }, [dispatch, query]);
 
   return (
     <div className="search-page">

@@ -19,6 +19,10 @@ const Main = () => {
     dispatch(fetchMovies());
   }, [dispatch]);
 
+  useEffect(() => {
+    console.log(localStorage.getItem('token'));
+  });
+
   return (
     <div className="movies">
       <main className="saved-movies__content">
