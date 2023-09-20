@@ -5,7 +5,10 @@ const historySlice = createSlice({
   initialState: [],
   reducers: {
     addToHistory: (state, action) => {
-      state.push(action.payload);
+      const queryToAdd = action.payload;
+      if (!state.includes(queryToAdd)) {
+        state.push(queryToAdd);
+      }
     },
   },
 });

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { addToHistory } from '../../store/historySlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchFilteredMovies } from '../../store/moviesSlice';
 
@@ -26,9 +27,11 @@ const SearchForm = () => {
 
     dispatch(fetchFilteredMovies(searchInputValue));
 
+    dispatch(addToHistory(searchInputValue));
+
     // переводим на стртаницу поиска, если поиск произошёл на главной странице
     if (pathname === '/') {
-      navigate('/search');
+      navigate(`/search`);
     }
   };
 
