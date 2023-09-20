@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchFilteredMovies } from '../../store/moviesSlice';
 
 // импорт компонент
 import MovieCardList from '../MovieCardList/MovieCardList';
@@ -8,7 +9,6 @@ import SearchForm from '../SearchForm/SearchForm';
 
 // импорт стилей
 import './SearchPage.css';
-import { fetchFilteredMovies } from '../../store/moviesSlice';
 
 // компонент страницы с поиском фильмов ////////////////////////////////////
 const SearchPage = () => {

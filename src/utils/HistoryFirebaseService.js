@@ -4,7 +4,7 @@ import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
 class HistoryFbService {
   constructor(userId) {
     this.userId = userId;
-    this.userDocRef = doc(db, 'users', userId);
+    this.userDocRef = doc(db, 'users', this.userId);
     this.historyCollectionRef = collection(this.userDocRef, 'history');
   }
 
@@ -22,6 +22,6 @@ class HistoryFbService {
 
 const userId = localStorage.getItem('token');
 
-const historyFbService = new HistoryFbService(userId);
+const historyFbService = new HistoryFbService(userId || 'guestId');
 
 export default historyFbService;

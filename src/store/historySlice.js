@@ -26,13 +26,20 @@ export const getSearchHistory = createAsyncThunk(
 
 const historySlice = createSlice({
   name: 'history',
-  initialState: { history: [] },
+  initialState: { history: [], status: null },
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(addToHistory.pending, (state, action) => {
+      state.status = 'loading';
+    });
     builder.addCase(addToHistory.fulfilled, (state, action) => {
-      console.log('history added');
+      state.status = 'resolved';
+    });
+    builder.addCase(getSearchHistory.pending, (state, action) => {
+      state.status = 'loading';
     });
     builder.addCase(getSearchHistory.fulfilled, (state, action) => {
+      state.status = 'resolved';
       state.history = action.payload;
     });
   },
