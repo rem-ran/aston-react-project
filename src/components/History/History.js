@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSearchHistory } from '../../store/historySlice';
+import { deleteFromHistory, getSearchHistory } from '../../store/historySlice';
 
 import Preloader from '../Preloader/Preloader';
 
@@ -14,7 +14,10 @@ const History = () => {
   const historyStatus = useSelector((state) => state.history.status);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
+  const handleDeleteLink = (item) => {
+    dispatch(deleteFromHistory(item));
+  };
 
   useEffect(() => {
     dispatch(getSearchHistory());
@@ -27,18 +30,19 @@ const History = () => {
         <h2 className="history__heading">История поиска фильмов</h2>
         <ul className="history__list">
           {history.map((query, index) => (
-            <li
-              className="history__list-item"
-              key={index}
-              onClick={() => navigate(`/search?q=${encodeURIComponent(query)}`)}
-            >
+            <li className="history__list-item" key={index}>
               <Link
                 className="history__link"
                 to={`/search?q=${encodeURIComponent(query)}`}
               >
                 {query}
               </Link>
-              <button className="history__delete-btn">Delete</button>
+              <button
+                className="history__delete-btn"
+                onClick={() => handleDeleteLink(query)}
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>

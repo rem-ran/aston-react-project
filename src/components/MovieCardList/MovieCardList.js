@@ -1,21 +1,19 @@
 // импорт компонент
 import MovieCard from '../MovieCard/MovieCard';
+import Preloader from '../Preloader/Preloader';
 
 // импорт стилей
 import './MovieCardList.css';
-import Preloader from '../Preloader/Preloader';
 
 // компонент списка карточек фильмов ////////////////////////////////////
 const MovieCardList = ({ movies }) => {
   if (!movies) {
-    return <Preloader />;
+    <Preloader />;
   }
-
-  const mov = [];
   return (
     <section className="movies-list">
       <ul className="movies-list__container">
-        {mov.map((movie) => (
+        {movies.map((movie) => (
           <MovieCard key={movie.id} {...movie} />
         ))}
       </ul>

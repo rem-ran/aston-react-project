@@ -1,5 +1,11 @@
 import { db } from './fbConfig';
-import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  setDoc,
+} from 'firebase/firestore';
 
 class HistoryFbService {
   constructor(userId) {
@@ -17,6 +23,15 @@ class HistoryFbService {
     const history = historyQuerySnapshot.docs.map((doc) => doc.data().link);
 
     return history;
+  }
+
+  async deleteFromHistory(query) {
+    const querySnapshot = await getDocs(this.historyCollectionRef);
+    querySnapshot.forEach((doc) => {
+      if (doc.data().link === query) {
+        deleteDoc(doc.ref);
+      }
+    });
   }
 }
 

@@ -17,11 +17,8 @@ const Main = () => {
 
   useEffect(() => {
     dispatch(fetchMovies());
+    console.log(allMovies);
   }, [dispatch]);
-
-  useEffect(() => {
-    console.log(localStorage.getItem('token'));
-  });
 
   return (
     <div className="movies">

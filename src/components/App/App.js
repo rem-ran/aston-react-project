@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
+import { resetHistory } from '../../store/historySlice';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { toggleIsLoggedIn, setUser, resetUser } from '../../store/userSlice';
 
@@ -87,6 +88,7 @@ function App() {
         localStorage.clear();
         dispatch(toggleIsLoggedIn());
         dispatch(resetUser());
+        dispatch(resetHistory());
         navigate('/');
       })
 
